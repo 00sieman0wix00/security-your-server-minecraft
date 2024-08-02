@@ -1,72 +1,79 @@
-# security-your-server-minecraft
-Secure your Minecraft server
-PL: Sekcje:
-1. Odwrotny serwer proxy
-TCP 1.1. Wybór najlepszego odwrotnego serwera proxy
-2. Podszywanie
-się pod UUID 2.1. Co to jest spoofing UUID?
-2.2. Jakie są konsekwencje zignorowania tego problemu
-2.3. Na jakich serwerach działa
-ta wada konstrukcyjna 2.4. Jak go
-zablokować 2.4.1. Zewnętrzne: IPWhitelist
-2.4.2. Zewnętrzny: BungeeGuard
-2.4.3. Korzystanie z ochrony
-prędkości 2.4.4. Zapora sieciowa 🟥
-3. Ukryj Bungeecord 🟥
-4. Ukryj panel pterodaktyla | Dowolny widelec 🟥 pterodaktyla
-4.1. Blokowanie skanerów 🟥
-IOT 4.2. Konfiguracja CloudFlare 🟥
-4.3. Konfiguracja serwera WWW 🟥
-4.4. Zapora sieciowa 🟥
-5. Blokuj sondy 🟥
-ICMP 5.1. Zapora sieciowa 🟥
-5.2. Edytowanie parametrów 🟥 jądra 6. Usuń wrażliwe wtyczki \
+# How to hide your bungeecord properly
 
-1. Odwrotny serwer proxy TCP:
-1.1 Wybór najlepszego odwrotnego serwera proxy
-W Internecie dostępnych jest wiele odwrotnych serwerów proxy, najpopularniejsze z nich to: TCPSHIELD, Infininity Filter i MC SHIELD.
+In this repository I will teach you how to **hide** your Minecraft server from **griefers**!\
+You might be asking, who is this guy and why does he want me to do stuff to my server?!\
+See this video, random servers has been griefed. This might happen if your server **is not secure**!: [Video #1](https://www.youtube.com/watch?v=-_N-j7jamjQ&), or this [Video #2](https://www.youtube.com/watch?v=ricF53F6fDE&t=118s), or even this! [Gif #1](https://cdn.discordapp.com/attachments/929111080276467723/989227429828653066/80k.mp4), **80k IPS dumped with MD5 encrypted passwords** 
 
-Polecam stosowanie NeoProtect, jest bardzo potężny. Ma również wiele funkcji, takich jak AntiBot, AntiVPN i nieograniczony ruch! To prawdopodobnie najlepsza opcja, jaką możesz wybrać. Sprawdź ich witrynę, aby uzyskać więcej informacji.
+Now you probably think that I am a bad person and that I am not trustworthy! Well **you are wrong**! **Over 30 people trust me** with their server security! If you want to contact some of them on discord: 
+1. zmywarabetoniara
+2. isexigriefer1337
 
-2. Podszywanie się pod UUID:
-2.1. Co to jest spoofing UUID?
-Podszywanie się pod UUID zostało po raz pierwszy wykryte na początku 2013 roku i jest obecnie dobrze znaną wadą konstrukcyjną Bungeecord - wykorzystywaną głównie do nękania serwerów. Ten exploit jest jedną z najczęściej używanych metod uzyskiwania uprawnień administratora na podatnych na ataki serwerach Minecraft.
+⚠️WARNING⚠️\
+**Every point flagged with 🟥 Requires a vps/vds/dedicated system. This means that these points wont work if you are using a Minecraft server hosting**
 
-2.2. Jakie są konsekwencje zignorowania tego problemu?
-Ignorowanie podszywania się pod UUID sprawi, że Twój serwer będzie podatny na ataki i ujawniony dla wszystkich. Może to spowodować wyciek wszystkich adresów IP gracza, całkowite zniszczenie sieci, a nawet usunięcie serwera! Więc lepiej sprawdź, czy Twój serwer jest podatny na ataki JAK NAJSZYBCIEJ.
+<!--- Idk how to use markdown dont hate me please :) -->
+# Sections:
 
-2.3. Na jakich serwerach działa ta wada konstrukcyjna
-Ta luka działa na każdej instancji bungeecord (w tym na forkach, takich jak flamecord, waterfall), które są podłączone do serwerów Java Edition.
+&nbsp;1. Reverse TCP Proxy\
+&nbsp;&nbsp;&nbsp;1.1. Choosing the best reverse proxy\
+&nbsp;2. UUID Spoofing\
+&nbsp;&nbsp;&nbsp;2.1. What is UUID Spoofing?\
+&nbsp;&nbsp;&nbsp;2.2. What are the consequences for ignoring this problem\
+&nbsp;&nbsp;&nbsp;2.3. On what servers does this design flaw work\
+&nbsp;&nbsp;&nbsp;2.4. How to block it\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.4.1. External: IPWhitelist\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.4.2. External: BungeeGuard\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.4.3. Using Velocity protection\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.4.4. Firewalling 🟥\
+&nbsp;3. Hide Bungeecord 🟥\
+&nbsp;4. Hide Pterodactyl Panel | Any Pterodactyl Fork 🟥\
+&nbsp;&nbsp;&nbsp;4.1. Blocking IOT Scanners 🟥\
+&nbsp;&nbsp;&nbsp;4.2. Setting up CloudFlare 🟥\
+&nbsp;&nbsp;&nbsp;4.3. Configuring WebServer 🟥\
+&nbsp;&nbsp;&nbsp;4.4. Firewalling 🟥\
+&nbsp;5. Block ICMP probes 🟥\
+&nbsp;&nbsp;&nbsp;5.1. Firewalling 🟥\
+&nbsp;&nbsp;&nbsp;5.2. Editing kernel parameters 🟥
+&nbsp;6. Remove vulnerable plugins  \
 
-2.4. Jak to zablokować?
-2.4.1 Zewnętrzne: IPWhitelist
-IPWhitelist pozwala odfiltrować połączenia na określonym serwerze spigot dla określonych adresów IP https://www.spigotmc.org/resources/ipwhitelist.61/
-Konfiguracja jest dość prosta, sprawdź stronę z czopem, aby uzyskać więcej informacji.
-
-2.4.2 Zewnętrzne: Bungeeguard
-Bungeeguard pozwala na dodanie systemu "tokenów" do serwera króćców i bungee.
-https://github.com/lucko/BungeeGuard Konfiguracja jest dość prosta, sprawdź stronę z króćcem, aby uzyskać więcej informacji.
-
-2.4.3 Zewnętrzne: Ochrona przed prędkością
-Działa tak samo jak BungeeGuard, dostarczony w konfiguracji prędkości.
-https://docs.papermc.io/velocity/player-information-forwarding Konfiguracja jest dość prosta, sprawdź podaną stronę, aby uzyskać więcej informacji.
-
-2.4.3 Wewnętrzny: Zapora sieciowa
-Zapora ogniowa jest możliwa za pomocą narzędzia takiego jak iptables/ufw na serwerach
-linux To jest dla bardziej zaawansowanych osób - jeśli nie znasz podstawowych poleceń linuxa, polecam trzymać się wtyczek, wtyczki są dobre, ale nie zapewniają maksymalnego bezpieczeństwa.
-Mamy 2 narzędzia, z których możemy skorzystać: IPTables | Kroki UFW
-UFW:
-1. Zainstaluj ufw za pomocą
-2. Zezwalaj na połączenia ssh z
-3. Zezwalaj na połączenia proxy za pomocą opcji Zmień port proxy! sudo apt-get update && sudo apt-get install ufwsudo ufw allow 22sudo ufw allow 2556525565⚠️OSTRZEŻENIE⚠️: Nie rób tego, jeśli używasz odwrotnego serwera proxy, spójrz na punkt 3.
-IPTables jest bardziej zaawansowany (ten artykuł byłby zbyt długi, aby go wyjaśnić, zarządzam iptables z łatwością), więc zamiast wyjaśniać każdy krok, podlinkuję świetny artykuł
-o spigotmc https://www.spigotmc.org/wiki/firewall-guide/#firewalling-with-iptables
-
-3. Ukryj Bungeecord:
-Ukrywanie bungeecord można wykonać za pomocą odwrotnego proxy z punktu 1. i zapora sieciowa serwera proxy do ich adresów IP
-Jak zainstalować zaporę ogniową za pomocą UFW:
-1. Zainstaluj ufw za pomocą
-2. Zezwalaj na połączenia proxy za pomocą opcji Zmień port proxy i $IP na adres IP serwera proxy (jest to różne dla każdego dostawcy, skontaktuj się z nim w sprawie ich adresów IP!)
-3. Powtórz krok 2 dla każdego adresu IP odwrotnego serwera proxy, adresy ip tcpshield: https://tcpshield.com/v4/ (Upewnij się, że używasz również podsieci aka / i liczb po nim)
-Jak zapora ogniowa za pomocą IPTables:
-SoonTMsudo apt-get update && sudo apt-get install ufwsudo ufw allow from $IP proto tcp to any port 2556525565
+### 1. Reverse TCP Proxy:
+#### &nbsp;1.1 Choosing the best reverse proxy
+&nbsp;&nbsp;There are plenty of reverse proxies available on the internet, most popular ones are: [TCPSHIELD](https://tcpshield.com/), [Infininity Filter](https://www.infinity-filter.com/) and [MC SHIELD](https://mcshield.com/).\
+&nbsp;\
+&nbsp;&nbsp;I recommend using [NeoProtect](https://neoprotect.net/), Its very powerful. It also has alot of features like AntiBot, AntiVPN and **unlimited traffic!** This is probably the best option you could pick. Check their site for more info.
+### 2. UUID Spoofing:
+#### &nbsp;&nbsp;&nbsp;2.1. What is UUID Spoofing?
+&nbsp;&nbsp;UUID spoofing was first discovered in early 2013, and is now a well-known Bungeecord design flaw - mainly abused to grief servers. This exploit is one of the most used methods to gain administrator privileges on vulnerable Minecraft servers.
+#### &nbsp;&nbsp;&nbsp;2.2. What are the consequences for ignoring this problem
+&nbsp;&nbsp;Ignoring UUID spoofing will make your server vulnerable and exposed to everyone. This might result in all of your player's ip being leaked, your network getting completly destroyed or even your server being deleted! So you better check if your server is vulnerable ASAP.
+#### &nbsp;&nbsp;&nbsp;2.3. On what servers does this design flaw work
+&nbsp;&nbsp;This flaw works on every single bungeecord instance (including forks such as flamecord, waterfall) that are connected to Java Edition Servers.
+#### &nbsp;&nbsp;&nbsp;2.4. How to block it
+##### &nbsp;&nbsp;&nbsp;&nbsp;2.4.1 External: IPWhitelist
+&nbsp;&nbsp;&nbsp;&nbsp;IPWhitelist allows to filter out the connections at specific spigot server for specific IP Addresses      https://www.spigotmc.org/resources/ipwhitelist.61/ \
+&nbsp;&nbsp;&nbsp;&nbsp;Configuration is pretty simple, check the spigot page for more info.
+##### &nbsp;&nbsp;&nbsp;&nbsp;2.4.2 External: Bungeeguard
+&nbsp;&nbsp;&nbsp;&nbsp;Bungeeguard allows to add a "token" system to your spigot and bungee server. https://github.com/lucko/BungeeGuard \
+&nbsp;&nbsp;&nbsp;&nbsp;Configuration is pretty simple, check the spigot page for more info.
+##### &nbsp;&nbsp;&nbsp;&nbsp;2.4.3 External: Velocity Protection
+&nbsp;&nbsp;&nbsp;&nbsp;Works the same as BungeeGuard, provided in velocity config. https://docs.papermc.io/velocity/player-information-forwarding \
+&nbsp;&nbsp;&nbsp;&nbsp;Configuration is pretty simple, check provided page for more info.
+##### &nbsp;&nbsp;&nbsp;&nbsp;2.4.3 Internal: Firewalling
+&nbsp;&nbsp;&nbsp;&nbsp;Firewalling is possible by using tool such as iptables/ufw on linux servers \
+&nbsp;&nbsp;&nbsp;&nbsp;This is for more advanced people - if you don't know basic linux commands I recommend sticking to plugins, plugins are good but they dont provide maximum security. \
+&nbsp;&nbsp;&nbsp;&nbsp;We have 2 tools we can use: IPTables | UFW \
+&nbsp;&nbsp;&nbsp;&nbsp;UFW Steps: \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Install ufw with ```sudo apt-get update && sudo apt-get install ufw``` \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Allow ssh connections with ```sudo ufw allow 22``` \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Allow proxy connections with ```sudo ufw allow 25565``` Change ```25565``` to your proxy port! ⚠️WARNING⚠️: Don't do this if you're using a reverse proxy, look at point 3.\
+&nbsp;&nbsp;&nbsp;&nbsp;IPTables is more advanced (This article would be too long to explain, I manage iptables with ease), so instead of explaining every step I'll link a great spigotmc article \
+&nbsp;&nbsp;&nbsp;&nbsp;https://www.spigotmc.org/wiki/firewall-guide/#firewalling-with-iptables
+### 3. Hide Bungeecord:
+&nbsp;&nbsp;Hiding bungeecord can be done by using a reverse proxy from point 1. and firewalling your proxy to their IPs \
+&nbsp;&nbsp;&nbsp;How to firewall with UFW: \
+&nbsp;&nbsp;&nbsp;&nbsp;1. Install ufw with ```sudo apt-get update && sudo apt-get install ufw``` \
+&nbsp;&nbsp;&nbsp;&nbsp;2. Allow proxy connections with ```sudo ufw allow from $IP proto tcp to any port 25565```
+&nbsp;&nbsp;&nbsp;&nbsp;Change ```25565``` to your proxy port and $IP to your revere proxy IP (this is different for every provider, contact them for their IPs!) \
+&nbsp;&nbsp;&nbsp;&nbsp;3. Repeat step 2 with every reverse proxy ip, tcpshield ips: https://tcpshield.com/v4/ (Make sure you also use the subnets aka / and numbers after it) \
+&nbsp;&nbsp;&nbsp;How to firewall with IPTables: \
+&nbsp;&nbsp;&nbsp;&nbsp;SoonTM
